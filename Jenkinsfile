@@ -20,7 +20,7 @@ pipeline {
               sshagent(['cent-key']) {
               sh """
               scp ./* root@cent:/home/root/jenk/
-              ssh -o StrickHostKeyChecking=no  root@cent "
+              ssh -o StrictHostKeyChecking=no  root@cent "
               cd /home/root/jenk/
               docker build -t "$APP_NAME" -f Dockerfile . 
               docker stop "$CON_NAME" || true && docker rm "$CON_NAME" || true
