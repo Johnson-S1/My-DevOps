@@ -1,9 +1,9 @@
 pipeline {
 
-    agent Hat
+    agent {label 'Hat'}
       environment {
-         APP_NAME="nginx:v1"
-         CON_NAME="deploy:V1" 
+         APP_NAME="Nginx:v1"
+         CON_NAME="Deploy:V1" 
        }  
          stages {
             
@@ -18,10 +18,15 @@ pipeline {
               steps {
               echo 'Building Docker Image From Github REPO DOCKER FILE'
               sshagent(['cent-key']) {
-              sh 'scp /home/root/"$WORKSPACE"/* root@cent:/home/root/jenk/'
-              sh 'docker build -t "$APP_NAME"  ./$WORKSPACE/Docker'
-              sh 'docker stop "$APP_NAME" || true && docker rm "$APP_NAME" || true
-              sh 'docker run -d --name "$CON_NAME" -p 8080:80 "$APP_NAME"
+              sh """
+              scp ./* root@cent:/home/root/jenk/
+              ssh -o StrickHostKeyChecking=no  root@cent "
+              cd /home/root/jenk/
+              docker build -t "$APP_NAME" -f Dockerfile . 
+              docker stop "$CON_NAME" || true && docker rm "$CON_NAME" || true
+              docker run -d --name "$CON_NAME" -p 8080:80 "$APP_NAME"
+              "
+              """
               }
         } 
    }
@@ -34,10 +39,10 @@ pipeline {
              
             failure {
                    echo "DEPLOYMENT IS NOT FINISHED"
-                   sh 'tail -n 20 /var/log/jenkins/jenkins.log'
+                   sh "tail -n 20 /var/log/jenkins/jenkins.log"
              }
             cleanup {
-                 cleanws()  
+                 cleanWs()  
                  echo 'Workspace has been successfully wiped'
             }
         }

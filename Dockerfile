@@ -1,6 +1,6 @@
 FROM nginx:alpine
-WORKDIR "/usr/share/ngix/html/"
-RUN apk update $$ apk add --no-cache vim curl
+WORKDIR "/usr/share/nginx/html/"
+RUN apk update && apk add --no-cache vim curl
 EXPOSE 80
 ENV CONTAINER="nginx build"
 CMD ["nginx","-g","daemon off;"]
