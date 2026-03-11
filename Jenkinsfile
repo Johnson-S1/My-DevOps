@@ -2,8 +2,8 @@ pipeline {
 
     agent {label 'Hat'}
       environment {
-         APP_NAME="Nginx:v1"
-         CON_NAME="Deploy:V1" 
+         APP_NAME="nginx:v1"
+         CON_NAME="deploy:V1" 
        }  
          stages {
             
