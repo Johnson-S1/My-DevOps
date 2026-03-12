@@ -19,7 +19,7 @@ pipeline{
                  rm -r .git
                  scp -r . root@cent:/root/mongodb
                  ssh -o StrictHostKeyChecking=no root@cent "
-                 cd /mongodb/ && docker build -t my-node .
+                 cd "/mongodb/CICD-Node\(DB\)-Docker/" && docker build -t my-node .
                  docker compose up -d
                  "
                  """
