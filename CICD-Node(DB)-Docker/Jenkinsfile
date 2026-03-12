@@ -34,7 +34,7 @@ pipeline{
                   }
           cleanup {
                 echo "Successfully deployed; Cleaning workspace caches"
-                cleanWs
+                cleanWs() 
                 }
          }                
 }
