@@ -6,6 +6,8 @@ services:
       - /var/lib/mongo:/data/db
     networks:
       - switch
+    env_file:
+      - containers.env
 
   node-app:
     build: .
@@ -16,7 +18,8 @@ services:
       - "3000:3000"
     networks:
       - switch
-
+    env_file:
+      - containers.env
 networks:
   switch:
     driver: bridge
