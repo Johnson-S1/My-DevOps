@@ -1,0 +1,19 @@
+services:
+  mongo-db:
+    image: mongodb:latest
+    container_name: my-db
+    volumes: /var/lib/mongo:/data/db
+    networks:
+      - switch
+
+  node-app:
+    build: .
+    container_name: my-node
+    depends_on: mongo-db
+    networks:
+      - switch
+
+networks:
+  switch:
+    driver: bridge
+

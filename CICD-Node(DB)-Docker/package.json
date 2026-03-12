@@ -1,0 +1,10 @@
+{
+  "name": "interactive-mongo-installer",
+  "version": "1.0.0",
+  "description": "Installer-style Node script to collect user data and store in MongoDB",
+  "main": "app.js",
+  "bin": {
+    "collect-user": "./app.js"
+  }
+}
+
