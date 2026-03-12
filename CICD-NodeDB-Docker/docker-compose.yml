@@ -10,7 +10,8 @@ services:
   node-app:
     build: .
     container_name: my-node
-    depends_on: mongo-db
+    depends_on: 
+      - mongo-db
     ports:
       - "3000:3000"
     networks:
