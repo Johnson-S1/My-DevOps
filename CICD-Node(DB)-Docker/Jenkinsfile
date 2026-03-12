@@ -3,14 +3,14 @@ pipeline{
     agent{label "Hat"}
 
     stages{
-        stage(POLL-SCM){
+        stage('POLL SCM'){
             steps{
                 echo "Pulling source code from git after poll-scm"
                 checkout scm
              }
          }
          
-         stage(Target-Docker){
+         stage('Target Docker'){
              steps{
                  echo "Deploying Multiple container with Docker Compose"
                  sshagent(["cent-key"]) {
@@ -32,12 +32,9 @@ pipeline{
           success {
                    echo "The Multicontainer Deployment has been successfully finished"
                   }
-          failure {
-                  sh "tail -n 15 ${WORKSPACE}/jenkins.log"
-                 }
           cleanup {
                 echo "Successfully deployed; Cleaning workspace caches"
-                CleanWs
+                cleanWs
                 }
          }                
 }
