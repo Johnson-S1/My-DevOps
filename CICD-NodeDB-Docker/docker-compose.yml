@@ -1,6 +1,6 @@
 services:
   mongo-db:
-    image: mongodb:latest
+    image: mongo:latest
     container_name: my-db
     volumes: 
       - /var/lib/mongo:/data/db
