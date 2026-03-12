@@ -16,7 +16,7 @@ pipeline{
                  sshagent(["cent-key"]) {
                  sh """
                  #copying pulled source code to target server via scp
-                 scp "-r * root@cent:/root/mongodb/"
+                 scp "* root@cent:/root/mongodb/"
                  ssh -o StrictHostKeyChecking=no root@cent "
                  cd /mongodb/ && docker build -t my-node .
                  docker compose up -d
