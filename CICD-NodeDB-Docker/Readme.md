@@ -3,6 +3,7 @@
 
 ## 📄 Project README – `CICD-NodeDB-Docker/README.md`
 
+```markdown
 # CICD-NodeDB-Docker
 
 A **Node.js + MongoDB application** deployed with Docker Compose and automated via Jenkins pipeline.
