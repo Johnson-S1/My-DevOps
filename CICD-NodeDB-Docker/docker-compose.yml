@@ -7,7 +7,7 @@ services:
     networks:
       - switch
     env_file:
-      - containers.env
+      - ./containers.env
 
   node-app:
     build: .
@@ -16,10 +16,12 @@ services:
       - mongo-db
     ports:
       - "3000:3000"
+    stdin_open: true
+    tty: true
     networks:
       - switch
     env_file:
-      - containers.env
+      - ./containers.env
 networks:
   switch:
     driver: bridge
